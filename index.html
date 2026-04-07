@@ -66,9 +66,9 @@
 
         .menu-section h2 {
             color: white;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             margin-bottom: 0.5rem;
-            text-transform: uppercase;
+            text-transform: lowercase;
             font-weight: normal;
         }
 
@@ -99,7 +99,7 @@
             right: 2rem;
             color: white;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 1.5rem;
             z-index: 20;
             pointer-events: auto;
             transition: opacity 0.3s;
@@ -111,23 +111,27 @@
             text-decoration: underline;
         }
 
-        #title-overlay {
+        #bottom-left-name {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            bottom: 2rem;
+            left: 2rem;
             color: white;
-            font-size: clamp(3rem, 10vw, 12rem);
-            font-weight: normal;
-            text-align: center;
-            line-height: 1;
-            z-index: 10;
-            pointer-events: none; /* Let clicks pass through if needed */
-            white-space: nowrap;
+            font-size: 1.5rem;
+            z-index: 20;
+            pointer-events: none;
             mix-blend-mode: difference;
         }
-        
 
+        #bottom-right-name {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            color: white;
+            font-size: 1.5rem;
+            z-index: 20;
+            pointer-events: none;
+            mix-blend-mode: difference;
+        }
     </style>
 </head>
 <body>
@@ -137,10 +141,13 @@
     </div>
 
     <a id="top-right-contact" href="mailto:francheskoromanovic@gmail.com" style="text-transform: lowercase;">francheskoromanovic@gmail.com</a>
+    
+    <div id="bottom-left-name">franchesko</div>
+    <div id="bottom-right-name">romanovic</div>
 
     <nav id="sidebar">
         <div class="menu-section" id="portfolio-menu">
-            <h2 id="portfolio-toggle" style="cursor: pointer;">Portfolio <span id="toggle-icon">+</span></h2>
+            <h2 id="portfolio-toggle" style="cursor: pointer;">portfolio <span id="toggle-icon">+</span></h2>
             <ul id="portfolio-list" style="display: none;">
                 <li><a href="#" class="portfolio-link" data-folder="all">All Works</a></li>
                 <li><a href="#" class="portfolio-link" data-folder="1. TIMSTO">Timsto</a></li>
@@ -155,10 +162,6 @@
             </ul>
         </div>
     </nav>
-
-    <div id="title-overlay">
-        franchesko<br>romanovic
-    </div>
 
     <script>
         const images = [
