@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Franchesko Romanovic</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: white;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: normal;
+        }
+
+        #carousel {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .carousel-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-repeat: repeat;
+            background-position: center center;
+            background-size: contain;
+            background-color: white;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            z-index: 1;
+        }
+
+        .carousel-item.active {
+            opacity: 1;
+        }
+
+        #sidebar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            padding: 2rem;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            pointer-events: none; /* Let clicks pass through background */
+            overflow-y: auto;
+            mix-blend-mode: difference;
+        }
+
+        .menu-section {
+            pointer-events: auto; /* Enable clicks on menu */
+        }
+
+        .menu-section h2 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-weight: normal;
+        }
+
+        .menu-section ul {
+            list-style: none;
+        }
+
+        .menu-section li {
+            margin-bottom: 0.25rem;
+        }
+
+        .menu-section a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: opacity 0.3s;
+        }
+
+        .menu-section a:hover {
+            opacity: 0.7;
+            text-decoration: underline;
+        }
+
+        #top-right-contact {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            z-index: 20;
+            pointer-events: auto;
+            transition: opacity 0.3s;
+            mix-blend-mode: difference;
+        }
+
+        #top-right-contact:hover {
+            opacity: 0.7;
+            text-decoration: underline;
+        }
+
+        #title-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: clamp(3rem, 10vw, 12rem);
+            font-weight: normal;
+            text-align: center;
+            line-height: 1;
+            z-index: 10;
+            pointer-events: none; /* Let clicks pass through if needed */
+            white-space: nowrap;
+            mix-blend-mode: difference;
+        }
+        
+
+    </style>
+</head>
+<body>
+
+    <div id="carousel">
+        <!-- Images will be injected here via JavaScript -->
+    </div>
+
+    <a id="top-right-contact" href="mailto:francheskoromanovic@gmail.com" style="text-transform: lowercase;">francheskoromanovic@gmail.com</a>
+
+    <nav id="sidebar">
+        <div class="menu-section" id="portfolio-menu">
+            <h2 id="portfolio-toggle" style="cursor: pointer;">Portfolio <span id="toggle-icon">+</span></h2>
+            <ul id="portfolio-list" style="display: none;">
+                <li><a href="#" class="portfolio-link" data-folder="all">All Works</a></li>
+                <li><a href="#" class="portfolio-link" data-folder="1. TIMSTO">Timsto</a></li>
+                <li><a href="#" class="portfolio-link" data-folder="2. SAMUEL SLATTERY">Samuel Slattery</a></li>
+                <li><a href="#" class="portfolio-link" data-folder="3. NENSI AVETISIAN">Nensi Avetisian</a></li>
+                <li><a href="#" class="portfolio-link" data-folder="4. LAMASKARADE">Lamaskarade</a></li>
+                <li><a href="#" class="portfolio-link" data-folder="5. GIO PEIRO">Gio Peiro</a></li>
+                <li><a href="#" class="portfolio-link" data-folder="5. MALENE SPECHT">Malene Specht</a></li>
+                <li><a href="#" class="portfolio-link" data-folder="CHOKE">Choke</a></li>
+                <li><a href="#" class="portfolio-link" data-folder="NATASCHA DOMINO">Natascha Domino</a></li>
+                <li><a href="#" class="portfolio-link" data-folder="NEWCOIN LIFE">Newcoin Life</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="title-overlay">
+        franchesko<br>romanovic
+    </div>
+
+    <script>
+        const images = [
+            "./1. TIMSTO/hf_20260216_104130_e3038bc9-62fc-480a-9403-d1fd7a1e8cb0.jpg",
+            "./1. TIMSTO/hf_20260216_104535_950cb716-f240-4ff9-bbc9-0c6b242ca702.jpg",
+            "./2. SAMUEL SLATTERY/hf_20260320_124149_9ca72179-384e-43fb-9b8f-35f10a6b344e.jpg",
+            "./2. SAMUEL SLATTERY/hf_20260401_164601_ae6b11ae-524b-43de-9e29-6addcce3df05.jpg",
+            "./3. NENSI AVETISIAN/hf_20260201_193214_aa56b826-1640-425e-8318-c65a1ba98b31.jpg",
+            "./3. NENSI AVETISIAN/hf_20260205_133910_69aac4d4-4221-43fe-a300-9cc397405e2b 3.jpg",
+            "./3. NENSI AVETISIAN/hf_20260205_142733_bb40f17a-7051-44e5-a00c-53f8e09fa503.png",
+            "./3. NENSI AVETISIAN/hf_20260209_172111_89f34303-5eb2-4ae8-8ec2-c34f09c3db63 2 1.png",
+            "./4. LAMASKARADE/Untitled design-353 3.jpg",
+            "./4. LAMASKARADE/Untitled design-354.jpg",
+            "./4. LAMASKARADE/Untitled design-355 2.jpg",
+            "./4. LAMASKARADE/Untitled design-356 2.PNG",
+            "./4. LAMASKARADE/hf_20260326_105153_e62d7a54-e946-4b89-bb12-a3cdf02f5acf 2.JPEG",
+            "./4. LAMASKARADE/hf_20260326_105356_e48f5fe2-035e-42ac-be9d-5c82d3472a50.jpg",
+            "./5. GIO PEIRO/hf_20260324_160749_8358d1bc-2f2a-4d53-bdba-b4c8ab4919f4 2.JPEG",
+            "./5. GIO PEIRO/hf_20260324_163132_4d49b092-9aab-4e3d-8af4-ebf16e855143.jpg",
+            "./5. GIO PEIRO/hf_20260324_173759_0d3058a7-4ae8-419a-803a-5c78411487c5.jpg",
+            "./5. MALENE SPECHT/hf_20260115_170021_109d4cee-cba4-43bf-8ffa-7527ba0018ba 2.jpg",
+            "./5. MALENE SPECHT/hf_20260115_180418_dab63c87-c1d2-4cb3-8e9e-bd0725988530.jpg",
+            "./5. MALENE SPECHT/hf_20260115_224639_2f5eb899-b671-4589-8e3b-04f25d03903f.jpg",
+            "./CHOKE/181d4391-d611-42ff-838b-8f213a8cbb53.jpg",
+            "./CHOKE/7a39e6fa-2ce3-49b3-bf51-60405f88842b.jpg",
+            "./CHOKE/9ea31969-992d-4c31-bc23-cfd3023dfddb.jpg",
+            "./CHOKE/hf_20260211_175812_24592755-a545-410c-848f-b9859a3b084e.jpg",
+            "./CHOKE/hf_20260211_211941_69f6c3b1-ad97-4bce-b17f-4835edffb0d0.jpg",
+            "./NATASCHA DOMINO/1044189d-940c-49ad-85e3-2eaef4b08616.jpg",
+            "./NATASCHA DOMINO/798ffba6-bfc7-4f46-b4b8-4c69bf592088 4.jpg",
+            "./NATASCHA DOMINO/c7f9d42e-e585-4b11-8e1a-4666f70b18ed.jpg",
+            "./NEWCOIN LIFE/1 copy.jpg",
+            "./NEWCOIN LIFE/hf_20260130_124122_4044cf71-85a8-41ea-8aaf-63153362e1e6.jpg",
+            "./NEWCOIN LIFE/hf_20260201_105812_297a09ba-05c1-4e17-b15e-05b65aca875f.jpg",
+            "./NEWCOIN LIFE/hf_20260201_213616_d5b79f63-aa85-4703-ae66-ee9b615bc161.jpg",
+            "./NEWCOIN LIFE/hf_20260203_093900_5af9fede-80c3-4de2-8019-5c11b02c9b54.jpg",
+            "./NEWCOIN LIFE/hf_20260212_214809_5a8ff489-c0ee-444d-af8f-46d36b5dff28.jpg",
+            "./NEWCOIN LIFE/hf_20260216_110554_3ac5b805-59f8-444e-9113-9d49f5d36ecc.jpg",
+            "./NEWCOIN LIFE/hf_20260312_201915_42f6e171-4efe-4d5c-a338-0411e7d486e7.jpg",
+            "./NEWCOIN LIFE/hf_20260323_191757_8c44d893-aac3-484d-a871-fd26696f0fcd 2.jpg",
+            "./NEWCOIN LIFE/hf_20260329_160022_5580724a-6ec8-48ae-b51d-add97a645d6f.jpg",
+            "./NEWCOIN LIFE/hf_20260330_072838_df762fda-f77c-4f08-9ddb-401cee50ad9b.jpg",
+            "./NEWCOIN LIFE/hf_20260331_190706_f9657a94-53be-47bd-b99c-21bec76cf594.jpg"
+        ];
+
+        const carouselContainer = document.getElementById('carousel');
+        const slideDuration = 4000; // time per slide in ms
+        let carouselInterval;
+
+        function renderCarousel(imageSet) {
+            // Clear existing
+            clearInterval(carouselInterval);
+            carouselContainer.innerHTML = '';
+            
+            if (!imageSet || imageSet.length === 0) return;
+
+            // Shuffle a copy
+            const shuffled = [...imageSet];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+
+            // Create div elements
+            shuffled.forEach((src, idx) => {
+                const div = document.createElement('div');
+                div.style.backgroundImage = `url('${src}')`;
+                div.classList.add('carousel-item');
+                if (idx === 0) div.classList.add('active');
+                carouselContainer.appendChild(div);
+            });
+
+            const imageElements = carouselContainer.querySelectorAll('.carousel-item');
+            let currentIndex = 0;
+
+            if (imageElements.length > 1) {
+                carouselInterval = setInterval(() => {
+                    imageElements[currentIndex].classList.remove('active');
+                    currentIndex = (currentIndex + 1) % imageElements.length;
+                    imageElements[currentIndex].classList.add('active');
+                }, slideDuration);
+            }
+        }
+
+        // Initialize with all images
+        renderCarousel(images);
+
+        // Sidebar filtering
+        document.querySelectorAll('.portfolio-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const folder = e.target.getAttribute('data-folder');
+                if (folder === 'all') {
+                    renderCarousel(images);
+                } else {
+                    renderCarousel(images.filter(src => src.includes(`/${folder}/`)));
+                }
+            });
+        });
+
+        // Portfolio menu toggle
+        const portfolioToggle = document.getElementById('portfolio-toggle');
+        const portfolioList = document.getElementById('portfolio-list');
+        const toggleIcon = document.getElementById('toggle-icon');
+
+        if (portfolioToggle) {
+            portfolioToggle.addEventListener('click', () => {
+                if (portfolioList.style.display === 'none') {
+                    portfolioList.style.display = 'block';
+                    toggleIcon.textContent = '-';
+                } else {
+                    portfolioList.style.display = 'none';
+                    toggleIcon.textContent = '+';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
